@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<header th:insert="blogs/header :: header"></header>
+<body>
+<div th:each="element: ${users}" class="container mt-5">
+    <p class="mb-0">Username: <span th:text="${element.getUsername()}"/> </p>
+    <p class="mb-0">User name: <span th:text="${element.getFirstname()}"/> <span th:text="${element.getSurname()}"/> </p>
+    <p class="mb-0">Role: <span th:each="role: ${element.getRole()}" th:text="${role}+' '"/> </p>
+    <a th:href="'/user/'+${element.getId()}">Edit</a>
+</div>
+<footer th:insert="blogs/footer :: footer"></footer>
+</body>
+</html>

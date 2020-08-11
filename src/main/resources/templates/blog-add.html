@@ -10,6 +10,7 @@
 <div class="container mt-5 mb-5">
    <h1>Добавление статьи</h1>
     <form action="/blog/add" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <input type="text" class="form-control" name="name" placeholder="Укажите название статьи"><br>
         <input type="text" class="form-control" name="announce" placeholder="Укажите краткое содержание"><br>
         <textarea class="form-control" name="text" placeholder="Полный текст статьи"></textarea><br>

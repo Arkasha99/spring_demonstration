@@ -2,8 +2,10 @@ package com.bazarjoq.blog.Controller;
 
 
 import com.bazarjoq.blog.models.Post;
+import com.bazarjoq.blog.models.User;
 import com.bazarjoq.blog.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +24,7 @@ public class BlogController {
 
     @GetMapping("blog")
     public String showBlog(Model model){
-        return "blog-main";
+        return ("blog-main");
     }
 
     @GetMapping("/blog/add")
@@ -31,8 +33,10 @@ public class BlogController {
     }
 
     @PostMapping("/blog/add")
-    public String blogAddPost(@RequestParam String name, @RequestParam String announce, @RequestParam String text, Model model){
-        Post post = new Post(name,announce,text);
+    public String blogAddPost(
+            @AuthenticationPrincipal User user,
+            @RequestParam String name, @RequestParam String announce, @RequestParam String text, Model model){
+        Post post = new Post(name,announce,text, user);
         postRepository.save(post);
         return ("redirect:/blog");
     }
@@ -43,7 +47,7 @@ public class BlogController {
         Optional<Post> post = postRepository.findById(id);
         ArrayList<Post> res = new ArrayList<>();
         post.ifPresent(res::add);
-        model.addAttribute("post",res);
+        model.addAttribute("post",res.get(0));
         return "blog-detail";
     }
 
@@ -52,7 +56,7 @@ public class BlogController {
         Optional<Post> post = postRepository.findById(id);
         ArrayList<Post> res = new ArrayList<>();
         post.ifPresent(res::add);
-        model.addAttribute("post",res);
+        model.addAttribute("post",res.get(0));
         return ("blog-edit");
     }
 

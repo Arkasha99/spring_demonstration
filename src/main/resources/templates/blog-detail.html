@@ -8,13 +8,11 @@
 <body>
 <header th:insert="blogs/header :: header"></header>
 <div class="container mt-5">
-    <div th:each="element : ${post}" class="alert alert-info mt-2">
-        <h3 th:text="${element.name}"></h3>
-        <p th:text="${element.announce}"></p>
-        <p th:text="${element.text}"></p>
-        <a class="btn btn-warning" th:href="'/blog/' + ${element.id} + '/edit'">Редактировать</a>
-        <a class="btn btn-warning" th:href="'/blog/' + ${element.id} + '/delete'">Удалить</a>
-    </div>
+        <h3 th:text="${post.name}"></h3>
+        <p th:text="${post.announce}"></p>
+        <p th:text="${post.text}"></p>
+        <a class="btn btn-warning" th:href="'/blog/' + ${post.id} + '/edit'">Редактировать</a>
+        <a class="btn btn-warning" th:href="'/blog/' + ${post.id} + '/delete'">Удалить</a>
 <!--    <div id="app">-->
 <!--        {{ message }}-->
 <!--    </div>-->

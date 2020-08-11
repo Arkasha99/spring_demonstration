@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<header th:insert="blogs/header :: header"></header>
+<body>
+    <div class="container mt-1">
+        <form action="/user" th:object="${user}" method="post">
+            <input type="text" th:value="*{username}" name="username"><br>
+            <input type="text" th:value="*{firstname}" name="firstname"><br>
+            <input type="text" th:value="*{surname}" name="surname"/><br>
+                <div th:each="role: ${roles}">
+                    <input type="checkbox" name="role"
+                           th:value="${role}"/>
+<!--                           th:field="${role}"-->
+
+                    <label th:text="${role}"/>
+                </div>
+            <input type="hidden" th:value="${user.getId()}" name="userId">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <button type="submit">Save</button>
+        </form>
+    </div>
+<footer th:insert="blogs/footer :: footer"></footer>
+</body>
+</html>

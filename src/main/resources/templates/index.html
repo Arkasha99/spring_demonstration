@@ -9,7 +9,7 @@
 </head>
 <body>
 <header th:insert="blogs/header :: header"></header>
-
+    <p>Hello, <span th:if="${name != null}" th:text="${name}"/> </p>
 <main role="main">
 <section class="jumbotron text-center">
     <div class="container">
@@ -24,10 +24,6 @@
 
 <div class="album py-5 bg-light">
     <div class="container">
-
-        <div id="app">
-            {{ message }}
-        </div>
         <div class="row">
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
