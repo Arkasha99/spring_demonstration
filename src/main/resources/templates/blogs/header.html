@@ -6,14 +6,13 @@
             <a class="p-2 text-dark" href="/blog">Блог</a>
             <a class="p-2 text-dark" href="/blog/add">Добавить статью</a>
             <a class="p-2 text-dark" href="/about">О нас</a>
+            <a class="p-2 text-dark" sec:authorize="hasRole('ADMIN')" href="/user">Список пользователей</a>
+            <a class="p-2 text-dark" href="/user/profile">Профиль</a>
         </nav>
-        <div sec:authorize="isAuthenticated()">
+        <div sec:authorize="hasRole('USER')">
             <form action="/logout" method="post">
-                <input
-                        type="hidden"
-                        th:name="${_csrf.parameterName}"
-                        th:value="${_csrf.token}" />
-                <input type="submit" value="sign out">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <input type="submit" value="Log in">
             </form>
         </div>
     </div>

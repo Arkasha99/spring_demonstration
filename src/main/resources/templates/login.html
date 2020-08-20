@@ -3,6 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>Spring Security Example </title>
+    <div th:insert="blogs/modules :: modules "/>
 </head>
 <body>
 <div th:if="${param.error}">
