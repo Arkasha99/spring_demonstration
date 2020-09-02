@@ -17,8 +17,6 @@
                 <div th:each="role: ${roles}">
                     <input type="checkbox" name="role"
                            th:value="${role}"/>
-<!--                           th:field="${role}"-->
-
                     <label th:text="${role}"/>
                 </div>
             <input type="hidden" th:value="${user.getId()}" name="userId">

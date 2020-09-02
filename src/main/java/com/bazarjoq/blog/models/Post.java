@@ -1,8 +1,10 @@
 package com.bazarjoq.blog.models;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Post {

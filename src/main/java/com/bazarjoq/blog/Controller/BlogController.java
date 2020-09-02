@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +36,7 @@ public class BlogController {
     @PostMapping("/blog/add")
     public String blogAddPost(
             @AuthenticationPrincipal User user,
-            @RequestParam String name, @RequestParam String announce, @RequestParam String text, Model model){
+            @RequestParam String name, @RequestParam String announce, @RequestParam String text){
         Post post = new Post(name,announce,text, user);
         postRepository.save(post);
         return ("redirect:/blog");
